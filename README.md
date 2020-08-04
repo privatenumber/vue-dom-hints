@@ -1,8 +1,13 @@
 # 💡 vue-dom-hints
 
-Vue devtools for the DOM
-
-<img src=".github/screenshot.png">
+<p align="center">
+  <img src=".github/screenshot.png" width="70%">
+  <br>
+  <br>
+  <strong>A Vue devtool that gives dev hints in the DOM</strong>
+  <br>
+  <i>Attach <code>__vue__</code> attributes to each component root element to hint at the source path</i>
+</p>
 
 ## :raising_hand: Why?
 

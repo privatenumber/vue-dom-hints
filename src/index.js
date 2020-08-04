@@ -24,7 +24,7 @@ const setAnnotation = ($element, attributeName, annotation) => {
 };
 
 const DomHints = {
-	install(Vue, { attributeName = '__vue__' } = {}) {
+	install(Vue, {attributeName = '__vue__'} = {}) {
 		Vue.mixin({
 			mounted() {
 				const {$el} = this;
@@ -42,9 +42,9 @@ const DomHints = {
 
 					setAnnotation($el, attributeName, annotate);
 				}
-			}
+			},
 		});
-	}
+	},
 };
 
 export default DomHints;

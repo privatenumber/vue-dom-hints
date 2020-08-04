@@ -11,23 +11,23 @@ const rollupConfig = {
 		isProd && terser({
 			mangle: {
 				properties: {
-					regex: /^M_/
-				}
-			}
+					regex: /^M_/,
+				},
+			},
 		}),
-		isProd && filesize()
+		isProd && filesize(),
 	],
 	output: [
 		{
 			format: 'es',
-			file: 'dist/dom-hints.esm.js'
+			file: 'dist/dom-hints.esm.js',
 		},
 		{
 			format: 'umd',
 			file: 'dist/dom-hints.js',
-			name: 'DomHints'
-		}
-	]
+			name: 'DomHints',
+		},
+	],
 };
 
 export default rollupConfig;

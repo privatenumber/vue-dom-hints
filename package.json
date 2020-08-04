@@ -13,6 +13,14 @@
     "lint": "xo",
     "test": "jest"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/*.js": ["xo", "jest --bail --findRelatedTests"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/privatenumber/vue-dom-hints.git"

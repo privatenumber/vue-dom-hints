@@ -17,7 +17,7 @@
     "build": "rollup -c --environment NODE_ENV:production",
     "dev-build": "rollup -cw",
     "lint": "xo",
-    "test": "jest",
+    "test": "npm run build && jest",
     "semantic-release": "semantic-release"
   },
   "husky": {
@@ -28,6 +28,7 @@
   "lint-staged": {
     "src/*.js": [
       "xo",
+      "npm run build",
       "jest --bail --findRelatedTests"
     ]
   },

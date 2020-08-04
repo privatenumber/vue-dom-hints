@@ -11,7 +11,7 @@
 
 ## :raising_hand: Why?
 
-- 🌟  Minimal alternative to [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)
+- 🌟  Minimal alternative to [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)!
 - 🕵️‍♀️  Easily identify Vue components while inspecting the DOM!
 - 🔥  Quickly identify where the Vue component is located!
 - 🐣  Tiny! `401 B` gzipped

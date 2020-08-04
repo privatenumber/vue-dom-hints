@@ -25,8 +25,15 @@ const setAnnotation = ($element, attributeName, annotation) => {
 
 const DomHints = {
 	install(Vue, {attributeName = '__vue__'} = {}) {
+		let notified = false;
+
 		Vue.mixin({
 			mounted() {
+				if (!notified) {
+					console.info(`[vue-dom-hints] 💁‍♀️ Inspect an element with the \`${attributeName}\` attribute and enter \`$0.__vue__\` in your console to inspect the view model`);
+					notified = true;
+				}
+
 				const {$el} = this;
 				let name = this.$options.__file || this.$options.name;
 

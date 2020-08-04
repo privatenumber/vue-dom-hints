@@ -1,31 +1,33 @@
 import babel from 'rollup-plugin-babel';
-import { terser } from 'rollup-plugin-terser';
+import {terser} from 'rollup-plugin-terser';
 import filesize from 'rollup-plugin-filesize';
 
 const isProd = process.env.NODE_ENV === 'production';
 
-export default {
+const rollupConfig = {
 	input: 'src/index.js',
 	plugins: [
 		babel(),
-		// isProd && terser({
-		// 	mangle: {
-		// 		properties: {
-		// 			regex: /^M_/,
-		// 		},
-		// 	},
-		// }),
-		isProd && filesize(),
+		isProd && terser({
+			mangle: {
+				properties: {
+					regex: /^M_/
+				}
+			}
+		}),
+		isProd && filesize()
 	],
 	output: [
 		{
 			format: 'es',
-			file: 'dist/dom-hints.esm.js',
+			file: 'dist/dom-hints.esm.js'
 		},
 		{
 			format: 'umd',
 			file: 'dist/dom-hints.js',
-			name: 'DomHints',
-		},
-	],
+			name: 'DomHints'
+		}
+	]
 };
+
+export default rollupConfig;

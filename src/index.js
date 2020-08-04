@@ -1,40 +1,33 @@
-/*
-todo:
-- attr name to be passed in as option
-*/
-
-const getAnnotation = ($el) => {
+const getAnnotation = ($element, attributeName) => {
 	let annotation;
-	if ($el.nodeType === 1) {
-		annotation = $el.getAttribute('__vue__');
-	}
-
-	// Comment
-	else if ($el.nodeType === 8) {
-		annotation = $el.textContent;
+	if ($element.nodeType === 1) {
+		// Element node
+		annotation = $element.getAttribute(attributeName);
+	} else if ($element.nodeType === 8) {
+		// Comment node
+		annotation = $element.textContent;
 	}
 
 	return annotation ? JSON.parse(annotation) : [];
 };
 
-const setAnnotation = ($el, annotation) => {
+const setAnnotation = ($element, attributeName, annotation) => {
 	annotation = JSON.stringify(annotation);
 
-	if ($el.nodeType === 1) {
-		$el.setAttribute('__vue__', annotation);
-	}
-
-	// Comment
-	else if ($el.nodeType === 8) {
-		$el.textContent = annotation;
+	if ($element.nodeType === 1) {
+		// Element node
+		$element.setAttribute(attributeName, annotation);
+	} else if ($element.nodeType === 8) {
+		// Comment node
+		$element.textContent = annotation;
 	}
 };
 
-export default {
-	install(Vue, options) {
+const DomHints = {
+	install(Vue, { attributeName = '__vue__' } = {}) {
 		Vue.mixin({
 			mounted() {
-				const { $el } = this;
+				const {$el} = this;
 				let name = this.$options.__file || this.$options.name;
 
 				if (!name && !this.$parent) {
@@ -42,13 +35,16 @@ export default {
 				}
 
 				if (name) {
-					const annotate = getAnnotation($el);
+					const annotate = getAnnotation($el, attributeName);
 					if (!annotate.includes(name)) {
 						annotate.push(name);
 					}
-					setAnnotation($el, annotate);
+
+					setAnnotation($el, attributeName, annotate);
 				}
 			}
 		});
 	}
 };
+
+export default DomHints;

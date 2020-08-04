@@ -23,10 +23,30 @@ const setAnnotation = ($element, attributeName, annotation) => {
 	}
 };
 
+function tip(attributeName) {
+	const code = 'color:#c58640; background:#222529; border:1px solid #3c3e42; font-family:monospace; padding:2px; border-radius:3px';
+	console.log(
+		`%c vue-dom-hints %c Inspect a component by selecting an element with the %c\`${attributeName}\`%c attribute and entering %c\`$0.__vue__\`%c in the console`,
+		'background:#35495e; padding:2px; border-radius:3px; color:#fff',
+		'',
+		code,
+		'',
+		code,
+		'',
+	);
+}
+
 const DomHints = {
 	install(Vue, {attributeName = '__vue__'} = {}) {
+		let notified = false;
+
 		Vue.mixin({
 			mounted() {
+				if (!notified) {
+					tip(attributeName);
+					notified = true;
+				}
+
 				const {$el} = this;
 				let name = this.$options.__file || this.$options.name;
 

@@ -8,13 +8,7 @@ const rollupConfig = {
 	input: 'src/index.js',
 	plugins: [
 		babel(),
-		isProd && terser({
-			mangle: {
-				properties: {
-					regex: /^M_/,
-				},
-			},
-		}),
+		isProd && terser(),
 		isProd && filesize(),
 	],
 	output: [

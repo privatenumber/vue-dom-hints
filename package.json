@@ -1,0 +1,33 @@
+{
+  "name": "vue-dom-hints",
+  "version": "1.0.0",
+  "description": "Vue devtools for the DOM",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c --environment NODE_ENV:production",
+    "dev-build": "rollup -cw",
+    "lint": "xo",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/privatenumber/vue-dom-hints.git"
+  },
+  "author": "Hiroki Osame <hiroki.osame@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/privatenumber/vue-dom-hints/issues"
+  },
+  "homepage": "https://github.com/privatenumber/vue-dom-hints#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "rollup": "^2.23.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-terser": "^6.1.0",
+    "xo": "^0.32.1"
+  }
+}

@@ -2,6 +2,8 @@
 
 Vue devtools for the DOM
 
+<img src=".github/screenshot.png">
+
 ## :raising_hand: Why?
 
 - Alternative to [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)

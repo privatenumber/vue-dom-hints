@@ -1,7 +1,13 @@
 {
   "name": "vue-dom-hints",
   "version": "0.0.0-development",
-  "description": "Vue devtools for the DOM",
+  "description": "Vue devtool for DOM hints",
+  "keywords": [
+    "vue",
+    "dom",
+    "hints",
+    "developer-tools"
+  ],
   "files": [
     "dist"
   ],

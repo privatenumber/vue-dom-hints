@@ -55,6 +55,28 @@ describe('hint attribute annotation', () => {
 	});
 });
 
+describe('showDevtip', () => {
+	test('show devtip', () => {
+		const spy = jest.spyOn(global.console, 'info');
+		const localVue = createLocalVue();
+		localVue.use(DomHints);
+
+		mount(Foo, {localVue});
+		expect(spy).toHaveBeenCalled();
+		spy.mockRestore();
+	});
+
+	test('turn off devtip', () => {
+		const spy = jest.spyOn(global.console, 'info');
+		const localVue = createLocalVue();
+		localVue.use(DomHints, {showDevtip: false});
+
+		mount(Foo, {localVue});
+		expect(spy).not.toHaveBeenCalled();
+		spy.mockRestore();
+	});
+});
+
 describe('error cases', () => {
 	test('handle name-less', () => {
 		const localVue = createLocalVue();

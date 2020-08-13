@@ -14,7 +14,6 @@ beforeEach(() => {
 });
 
 describe('hint attribute annotation', () => {
-
 	test('use __file', () => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints);
@@ -53,6 +52,28 @@ describe('hint attribute annotation', () => {
 
 		const wrapper = mount(Bar, {localVue});
 		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify(['Bar.vue', 'App root']));
+	});
+});
+
+describe('showDevtip', () => {
+	test('show devtip', () => {
+		const spy = jest.spyOn(global.console, 'info');
+		const localVue = createLocalVue();
+		localVue.use(DomHints);
+
+		mount(Foo, {localVue});
+		expect(spy).toHaveBeenCalled();
+		spy.mockRestore();
+	});
+
+	test('turn off devtip', () => {
+		const spy = jest.spyOn(global.console, 'info');
+		const localVue = createLocalVue();
+		localVue.use(DomHints, {showDevtip: false});
+
+		mount(Foo, {localVue});
+		expect(spy).not.toHaveBeenCalled();
+		spy.mockRestore();
 	});
 });
 

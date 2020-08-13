@@ -14,7 +14,6 @@ beforeEach(() => {
 });
 
 describe('hint attribute annotation', () => {
-
 	test('use __file', () => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints);

@@ -14,7 +14,6 @@
 - **🌟  Browser agnostic** Minimal alternative to [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)!
 - **🕵️‍♀️  No more guessing** Easily identify Vue components just by inspecting the DOM!
 - **🔥  Faster debugging** Quickly determine the SFC path and start debugging!
-- **🐣  Tiny** `401 B` gzipped!
 
 > ⚡️ Pro tip: In Chrome DevTools, inspect an element with the hint attribute and enter `$0.__vue__` in the console to dive into the view model and inspect the state.
 

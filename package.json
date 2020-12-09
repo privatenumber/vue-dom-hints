@@ -45,17 +45,17 @@
   "devDependencies": {
     "@babel/core": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
+    "@rollup/plugin-babel": "^5.2.2",
     "@vue/test-utils": "^1.0.3",
     "husky": "^4.2.5",
     "jest": "^26.2.2",
     "lint-staged": "^10.2.11",
     "rollup": "^2.23.0",
-    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-filesize": "^9.0.2",
     "rollup-plugin-terser": "^6.1.0",
+    "semantic-release": "^17.1.1",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11",
-    "xo": "^0.32.1",
-    "semantic-release": "^17.1.1"
+    "xo": "^0.32.1"
   }
 }

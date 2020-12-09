@@ -7,7 +7,9 @@ const isProd = process.env.NODE_ENV === 'production';
 const rollupConfig = {
 	input: 'src/index.js',
 	plugins: [
-		babel(),
+		babel({
+			babelHelpers: 'bundled',
+		}),
 		isProd && terser(),
 		isProd && filesize(),
 	],

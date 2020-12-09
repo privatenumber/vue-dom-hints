@@ -17,8 +17,7 @@
     "build": "rollup -c --environment NODE_ENV:production",
     "dev-build": "rollup -cw",
     "lint": "xo",
-    "test": "jest",
-    "semantic-release": "semantic-release"
+    "test": "jest"
   },
   "husky": {
     "hooks": {
@@ -53,7 +52,6 @@
     "rollup": "^2.34.2",
     "rollup-plugin-filesize": "^9.1.0",
     "rollup-plugin-terser": "^7.0.2",
-    "semantic-release": "^17.3.0",
     "vue": "^2.6.12",
     "vue-template-compiler": "^2.6.12",
     "xo": "^0.36.1"

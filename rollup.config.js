@@ -1,13 +1,15 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import {terser} from 'rollup-plugin-terser';
 import filesize from 'rollup-plugin-filesize';
+
+const isProd = process.env.NODE_ENV === 'production';
 
 const rollupConfig = {
 	input: 'src/index.js',
 	plugins: [
 		babel(),
-		terser(),
-		filesize(),
+		isProd && terser(),
+		isProd && filesize(),
 	],
 	output: [
 		{

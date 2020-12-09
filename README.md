@@ -4,21 +4,19 @@
   <img src=".github/screenshot.png" width="70%">
   <br>
   <br>
-  <strong>A Vue devtool that gives dev hints in the DOM</strong>
+  <strong>A Vue devtool that adds dev hints in the DOM via <code>__vue__</code> attribute</strong>
   <br>
-  <i>Attach <code>__vue__</code> attributes to each component root element to hint at the source path</i>
+  <i>Instantly identify all Vue components in the DOM and where they're located in your codebase</i>
 </p>
 
 ## :raising_hand: Why?
 
-- 🌟  Minimal alternative to [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)!
-- 🕵️‍♀️  Easily identify Vue components while inspecting the DOM!
-- 🔥  Quickly identify where the Vue component is located!
-- 🐣  Tiny! `401 B` gzipped
+- **🌟  Browser agnostic** Minimal alternative to [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)!
+- **🕵️‍♀️  No more guessing** Easily identify Vue components just by inspecting the DOM!
+- **🔥  Faster debugging** Quickly determine the SFC path and start debugging!
+- **🐣  Tiny** `401 B` gzipped!
 
-
-### ⚡️ Tip
-In Chrome DevTools, inspect/select an element with the hint attribute and enter `$0.__vue__` in the console. You can dive into the view model to inspect the state.
+> ⚡️ Pro tip: In Chrome DevTools, inspect an element with the hint attribute and enter `$0.__vue__` in the console to dive into the view model and inspect the state.
 
 ## :rocket: Install
 ```sh

@@ -49,3 +49,4 @@ Vue.use(DomHints, {
 
 ## ⚙️ Options
 - `attributeName` `<String>` (`__vue__`) - the attribute name to use when adding DOM hints
+- `showDevtip` `<Boolean>` (`true`) - whether to show the dev tip in the console when loaded

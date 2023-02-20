@@ -1,31 +1,30 @@
+import 'jsdom-global/register.js';
+import { describe, expect } from 'manten';
 import { createLocalVue, mount } from '@vue/test-utils';
+import { spyOn } from 'tinyspy';
 import DomHints from '../src/index.js';
 
-let Foo;
-
-beforeEach(() => {
-	Foo = {
-		__file: 'Foo.vue',
-		name: 'Foo',
-		render(h) {
-			return h('div', ['foo']);
-		},
-	};
+const componentFixture = () => ({
+	__file: 'Foo.vue',
+	name: 'Foo',
+	render: h => h('div', ['foo']),
 });
 
-describe('hint attribute annotation', () => {
+describe('hint attribute annotation', ({ test }) => {
 	test('use __file', () => {
 		const localVue = createLocalVue();
-		localVue.use(DomHints);
+		localVue.use(DomHints, { showDevtip: false });
 
+		const Foo = componentFixture();
 		const wrapper = mount(Foo, { localVue });
 		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([Foo.__file, 'App root']));
 	});
 
 	test('fallback to name if no __file', () => {
 		const localVue = createLocalVue();
-		localVue.use(DomHints);
+		localVue.use(DomHints, { showDevtip: false });
 
+		const Foo = componentFixture();
 		delete Foo.__file;
 
 		const wrapper = mount(Foo, { localVue });
@@ -34,16 +33,24 @@ describe('hint attribute annotation', () => {
 
 	test('custom annotation attribute', () => {
 		const localVue = createLocalVue();
-		localVue.use(DomHints, { attributeName: 'random-attribute' });
+		localVue.use(DomHints, {
+			showDevtip: false,
+			attributeName: 'random-attribute',
+		});
 
+		const Foo = componentFixture();
 		const wrapper = mount(Foo, { localVue });
 		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify([Foo.__file, 'App root']));
 	});
 
 	test('extended component', () => {
 		const localVue = createLocalVue();
-		localVue.use(DomHints, { attributeName: 'random-attribute' });
+		localVue.use(DomHints, {
+			showDevtip: false,
+			attributeName: 'random-attribute',
+		});
 
+		const Foo = componentFixture();
 		const Bar = {
 			// Seems like with extends, the `__file` property needs to be overwritten explicitly
 			__file: 'Bar.vue',
@@ -55,33 +62,36 @@ describe('hint attribute annotation', () => {
 	});
 });
 
-describe('showDevtip', () => {
+describe('showDevtip', ({ test }) => {
 	test('show devtip', () => {
-		const spy = jest.spyOn(global.console, 'info');
+		const spy = spyOn(global.console, 'info', () => {});
 		const localVue = createLocalVue();
 		localVue.use(DomHints);
 
+		const Foo = componentFixture();
 		mount(Foo, { localVue });
-		expect(spy).toHaveBeenCalled();
-		spy.mockRestore();
+		expect(spy.called).toBe(true);
+		spy.restore();
 	});
 
 	test('turn off devtip', () => {
-		const spy = jest.spyOn(global.console, 'info');
+		const spy = spyOn(global.console, 'info');
 		const localVue = createLocalVue();
 		localVue.use(DomHints, { showDevtip: false });
 
+		const Foo = componentFixture();
 		mount(Foo, { localVue });
-		expect(spy).not.toHaveBeenCalled();
-		spy.mockRestore();
+		expect(spy.called).toBe(false);
+		spy.restore();
 	});
 });
 
-describe('error cases', () => {
+describe('error cases', ({ test }) => {
 	test('handle name-less', () => {
 		const localVue = createLocalVue();
-		localVue.use(DomHints);
+		localVue.use(DomHints, { showDevtip: false });
 
+		const Foo = componentFixture();
 		const wrapper = mount(Foo, { localVue });
 		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify(['Foo.vue', 'App root']));
 	});

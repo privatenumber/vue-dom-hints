@@ -1,5 +1,5 @@
-import {createLocalVue, mount} from '@vue/test-utils';
-import DomHints from '../src';
+import { createLocalVue, mount } from '@vue/test-utils';
+import DomHints from '../src.js';
 
 let Foo;
 
@@ -18,7 +18,7 @@ describe('hint attribute annotation', () => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints);
 
-		const wrapper = mount(Foo, {localVue});
+		const wrapper = mount(Foo, { localVue });
 		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([Foo.__file, 'App root']));
 	});
 
@@ -28,21 +28,21 @@ describe('hint attribute annotation', () => {
 
 		delete Foo.__file;
 
-		const wrapper = mount(Foo, {localVue});
+		const wrapper = mount(Foo, { localVue });
 		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([Foo.name, 'App root']));
 	});
 
 	test('custom annotation attribute', () => {
 		const localVue = createLocalVue();
-		localVue.use(DomHints, {attributeName: 'random-attribute'});
+		localVue.use(DomHints, { attributeName: 'random-attribute' });
 
-		const wrapper = mount(Foo, {localVue});
+		const wrapper = mount(Foo, { localVue });
 		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify([Foo.__file, 'App root']));
 	});
 
 	test('extended component', () => {
 		const localVue = createLocalVue();
-		localVue.use(DomHints, {attributeName: 'random-attribute'});
+		localVue.use(DomHints, { attributeName: 'random-attribute' });
 
 		const Bar = {
 			// Seems like with extends, the `__file` property needs to be overwritten explicitly
@@ -50,7 +50,7 @@ describe('hint attribute annotation', () => {
 			extends: Foo,
 		};
 
-		const wrapper = mount(Bar, {localVue});
+		const wrapper = mount(Bar, { localVue });
 		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify(['Bar.vue', 'App root']));
 	});
 });
@@ -61,7 +61,7 @@ describe('showDevtip', () => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints);
 
-		mount(Foo, {localVue});
+		mount(Foo, { localVue });
 		expect(spy).toHaveBeenCalled();
 		spy.mockRestore();
 	});
@@ -69,9 +69,9 @@ describe('showDevtip', () => {
 	test('turn off devtip', () => {
 		const spy = jest.spyOn(global.console, 'info');
 		const localVue = createLocalVue();
-		localVue.use(DomHints, {showDevtip: false});
+		localVue.use(DomHints, { showDevtip: false });
 
-		mount(Foo, {localVue});
+		mount(Foo, { localVue });
 		expect(spy).not.toHaveBeenCalled();
 		spy.mockRestore();
 	});
@@ -82,7 +82,7 @@ describe('error cases', () => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints);
 
-		const wrapper = mount(Foo, {localVue});
+		const wrapper = mount(Foo, { localVue });
 		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify(['Foo.vue', 'App root']));
 	});
 });

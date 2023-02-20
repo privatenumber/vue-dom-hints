@@ -50,7 +50,7 @@ const DomHints = {
 					notified = true;
 				}
 
-				const {$el} = this;
+				const { $el } = this;
 				let name = this.$options.__file || this.$options.name;
 
 				if (!name && !this.$parent) {

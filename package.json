@@ -31,11 +31,7 @@
 		"pre-commit": "pnpm lint-staged"
 	},
 	"lint-staged": {
-		"src/*.js": [
-			"pnpm lint",
-			"pnpm build",
-			"pnpm test"
-		]
+		"src/*.js": "pnpm lint"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.10",

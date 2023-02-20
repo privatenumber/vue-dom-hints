@@ -5,30 +5,30 @@ import { spyOn } from 'tinyspy';
 import DomHints from '../src/index.js';
 
 const componentFixture = () => ({
-	__file: 'Foo.vue',
-	name: 'Foo',
-	render: h => h('div', ['foo']),
+	__file: 'App.vue',
+	name: 'App',
+	render: h => h('div', ['App']),
 });
 
-describe('hint attribute annotation', ({ test }) => {
+describe('attribute annotation', ({ test }) => {
 	test('use __file', () => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints, { showDevtip: false });
 
-		const Foo = componentFixture();
-		const wrapper = mount(Foo, { localVue });
-		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([Foo.__file, 'App root']));
+		const App = componentFixture();
+		const wrapper = mount(App, { localVue });
+		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([App.__file, 'App root']));
 	});
 
 	test('fallback to name if no __file', () => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints, { showDevtip: false });
 
-		const Foo = componentFixture();
-		delete Foo.__file;
+		const App = componentFixture();
+		delete App.__file;
 
-		const wrapper = mount(Foo, { localVue });
-		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([Foo.name, 'App root']));
+		const wrapper = mount(App, { localVue });
+		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([App.name, 'App root']));
 	});
 
 	test('custom annotation attribute', () => {
@@ -38,9 +38,9 @@ describe('hint attribute annotation', ({ test }) => {
 			attributeName: 'random-attribute',
 		});
 
-		const Foo = componentFixture();
-		const wrapper = mount(Foo, { localVue });
-		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify([Foo.__file, 'App root']));
+		const App = componentFixture();
+		const wrapper = mount(App, { localVue });
+		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify([App.__file, 'App root']));
 	});
 
 	test('extended component', () => {
@@ -50,15 +50,38 @@ describe('hint attribute annotation', ({ test }) => {
 			attributeName: 'random-attribute',
 		});
 
-		const Foo = componentFixture();
+		const App = componentFixture();
 		const Bar = {
 			// Seems like with extends, the `__file` property needs to be overwritten explicitly
 			__file: 'Bar.vue',
-			extends: Foo,
+			extends: App,
 		};
 
 		const wrapper = mount(Bar, { localVue });
 		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify(['Bar.vue', 'App root']));
+	});
+});
+
+describe('VMs property', ({ test }) => {
+	test('__vms__ to contain references', () => {
+		const localVue = createLocalVue();
+		localVue.use(DomHints, { showDevtip: false });
+
+		const App = componentFixture();
+		const wrapper = mount(App, { localVue });
+		expect(wrapper.vm.$el.__vms__).toStrictEqual([wrapper.vm, wrapper.vm.$parent]);
+	});
+
+	test('property name to be configurable', () => {
+		const localVue = createLocalVue();
+		localVue.use(DomHints, {
+			showDevtip: false,
+			vmsPropertyName: 'randomProperty',
+		});
+
+		const App = componentFixture();
+		const wrapper = mount(App, { localVue });
+		expect(wrapper.vm.$el.randomProperty).toStrictEqual([wrapper.vm, wrapper.vm.$parent]);
 	});
 });
 
@@ -68,8 +91,8 @@ describe('showDevtip', ({ test }) => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints);
 
-		const Foo = componentFixture();
-		mount(Foo, { localVue });
+		const App = componentFixture();
+		mount(App, { localVue });
 		expect(spy.called).toBe(true);
 		spy.restore();
 	});
@@ -79,8 +102,8 @@ describe('showDevtip', ({ test }) => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints, { showDevtip: false });
 
-		const Foo = componentFixture();
-		mount(Foo, { localVue });
+		const App = componentFixture();
+		mount(App, { localVue });
 		expect(spy.called).toBe(false);
 		spy.restore();
 	});
@@ -91,8 +114,8 @@ describe('error cases', ({ test }) => {
 		const localVue = createLocalVue();
 		localVue.use(DomHints, { showDevtip: false });
 
-		const Foo = componentFixture();
-		const wrapper = mount(Foo, { localVue });
-		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify(['Foo.vue', 'App root']));
+		const App = componentFixture();
+		const wrapper = mount(App, { localVue });
+		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify(['App.vue', 'App root']));
 	});
 });

@@ -49,7 +49,7 @@
 		"jsdom": "^21.1.0",
 		"jsdom-global": "^3.0.2",
 		"lint-staged": "^13.1.2",
-		"manten": "^0.6.1",
+		"manten": "^0.7.0",
 		"rollup": "^2.34.2",
 		"rollup-plugin-filesize": "^9.1.0",
 		"rollup-plugin-terser": "^7.0.2",

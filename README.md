@@ -9,7 +9,7 @@
   <i>Instantly identify all Vue components in the DOM and where they're located in your codebase</i>
 </p>
 
-## :raising_hand: Why?
+## 🙋‍♂️ Why?
 
 - **🌟  Browser agnostic** Minimal alternative to [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)!
 - **🕵️‍♀️  No more guessing** Easily identify Vue components just by inspecting the DOM!
@@ -17,12 +17,12 @@
 
 > ⚡️ Pro tip: In Chrome DevTools, inspect an element with the hint attribute and enter `$0.__vue__` in the console to dive into the view model and inspect the state.
 
-## :rocket: Install
+## 🚀 Install
 ```sh
 npm i vue-dom-hints
 ```
 
-## :vertical_traffic_light: Setup
+## 🚦 Setup
 Install it to Vue as a [plugin](https://vuejs.org/v2/guide/plugins.html#Using-a-Plugin):
 ```js
 import DomHints from 'vue-dom-hints'

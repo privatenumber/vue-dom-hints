@@ -19,7 +19,7 @@ It adds the following to DOM elements associated with a component:
 ### Motivation
 Vue.js is often debugged with [the Vue Devtools browser extension](https://devtools.vuejs.org/), however, it may not always suit your needs. For us, it was not compatible with a multi-app setup with iframes.
 
-Additionally, the browser extension leverages the `__vue__` property to detect components on the page, and it wasn't sufficient for detecting _all_ components.
+Additionally, the browser extension leverages the `__vue__` property to detect components on the page, and [it wasn't sufficient for detecting _all_ components](#why-is-the-__vue__-property-not-enough).
 
 Finally, for devs that are comfortable with interfacing with components directly, being able to access all this data in the browser console offered much more flexibility and insight.
 
@@ -34,12 +34,7 @@ Install it to your Vue app as a [plugin](https://vuejs.org/v2/guide/plugins.html
 import Vue from 'vue'
 import DomHints from 'vue-dom-hints'
 
-Vue.use(DomHints)
-```
-
-#### Disable it for production in your build
-
-```js
+// Only enable it during development
 if (process.env.NODE_ENV !== 'production') {
     Vue.use(DomHints)
 }
@@ -48,7 +43,9 @@ if (process.env.NODE_ENV !== 'production') {
 #### Pass in options
 ```js
 Vue.use(DomHints, {
-    attributeName: 'hint'
+    attributeName: 'vue',
+    vmsPropertyName: 'vms',
+    showDevtip: false
 })
 ```
 

@@ -29,9 +29,6 @@ jobs:
     - name: Test
       run: pnpm test
 
-    - name: Build
-      run: pnpm build
-
     - name: Release
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}

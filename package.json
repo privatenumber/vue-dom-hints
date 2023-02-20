@@ -24,7 +24,8 @@
 		"build": "rollup -c --environment NODE_ENV:production",
 		"dev-build": "rollup -cw",
 		"lint": "eslint --cache .",
-		"test": "jest"
+		"test": "jest",
+		"prepack": "pnpm build && clean-pkg-json"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm lint-staged"
@@ -42,6 +43,7 @@
 		"@pvtnbr/eslint-config": "^0.33.0",
 		"@rollup/plugin-babel": "^5.2.2",
 		"@vue/test-utils": "^1.1.1",
+		"clean-pkg-json": "^1.2.0",
 		"eslint": "^8.34.0",
 		"jest": "^26.6.3",
 		"lint-staged": "^13.1.2",

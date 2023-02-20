@@ -50,10 +50,10 @@ const DomHints = {
 					notified = true;
 				}
 
-				const { $el } = this;
-				let name = this.$options.__file || this.$options.name;
+				const { $el, $options, $parent } = this;
+				let name = $options.__file || $options.name;
 
-				if (!name && !this.$parent) {
+				if (!name && !$parent) {
 					name = 'App root';
 				}
 

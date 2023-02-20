@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils';
-import DomHints from '../src.js';
+import DomHints from '../src/index.js';
 
 let Foo;
 

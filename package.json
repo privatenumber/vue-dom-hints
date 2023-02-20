@@ -1,6 +1,6 @@
 {
 	"name": "vue-dom-hints",
-	"version": "0.0.0-development",
+	"version": "0.0.0-semantic-release",
 	"description": "Vue devtool for DOM hints",
 	"keywords": [
 		"vue",
@@ -9,16 +9,16 @@
 		"developer-tools"
 	],
 	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/privatenumber/vue-dom-hints.git"
+	"repository": "privatenumber/vue-dom-hints",
+	"author": {
+		"name": "Hiroki Osame",
+		"email": "hiroki.osame@gmail.com"
 	},
-	"author": "Hiroki Osame <hiroki.osame@gmail.com>",
 	"files": [
 		"dist"
 	],
-	"main": "dist/dom-hints.js",
-	"module": "dist/dom-hints.esm.js",
+	"main": "./dist/dom-hints.js",
+	"module": "./dist/dom-hints.esm.js",
 	"scripts": {
 		"prepare": "simple-git-hooks",
 		"build": "rollup -c --environment NODE_ENV:production",
@@ -36,10 +36,6 @@
 			"jest --bail --findRelatedTests"
 		]
 	},
-	"bugs": {
-		"url": "https://github.com/privatenumber/vue-dom-hints/issues"
-	},
-	"homepage": "https://github.com/privatenumber/vue-dom-hints#readme",
 	"devDependencies": {
 		"@babel/core": "^7.12.10",
 		"@babel/preset-env": "^7.12.10",

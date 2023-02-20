@@ -39,6 +39,7 @@ function tip(attributeName) {
 const DomHints = {
 	install(Vue, {
 		attributeName = '__vue__',
+		vmsPropertyName = '__vms__',
 		showDevtip = true,
 	} = {}) {
 		let notified = !showDevtip;
@@ -65,6 +66,18 @@ const DomHints = {
 
 					setAnnotation($el, attributeName, annotate);
 				}
+
+				/**
+				 * Vue.js adds the associated VM to the element's __vue__ property
+				 * but doesn't provide a way to access all VMs associated with an element
+				 *
+				 * When a component uses another component as the root element
+				 * a single DOM element can be associated with multiple VMs
+				 */
+				if (!$el[vmsPropertyName]) {
+					$el[vmsPropertyName] = [];
+				}
+				$el[vmsPropertyName].push(this);
 			},
 		});
 	},

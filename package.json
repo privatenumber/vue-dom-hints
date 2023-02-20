@@ -1,59 +1,63 @@
 {
-  "name": "vue-dom-hints",
-  "version": "0.0.0-development",
-  "description": "Vue devtool for DOM hints",
-  "keywords": [
-    "vue",
-    "dom",
-    "hints",
-    "developer-tools"
-  ],
-  "files": [
-    "dist"
-  ],
-  "main": "dist/dom-hints.js",
-  "module": "dist/dom-hints.esm.js",
-  "scripts": {
-    "build": "rollup -c --environment NODE_ENV:production",
-    "dev-build": "rollup -cw",
-    "lint": "xo",
-    "test": "jest"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/*.js": [
-      "xo",
-      "npm run build",
-      "jest --bail --findRelatedTests"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/privatenumber/vue-dom-hints.git"
-  },
-  "author": "Hiroki Osame <hiroki.osame@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/privatenumber/vue-dom-hints/issues"
-  },
-  "homepage": "https://github.com/privatenumber/vue-dom-hints#readme",
-  "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.10",
-    "@rollup/plugin-babel": "^5.2.2",
-    "@vue/test-utils": "^1.1.1",
-    "husky": "^4.3.5",
-    "jest": "^26.6.3",
-    "lint-staged": "^10.5.3",
-    "rollup": "^2.34.2",
-    "rollup-plugin-filesize": "^9.1.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "vue": "^2.6.12",
-    "vue-template-compiler": "^2.6.12",
-    "xo": "^0.36.1"
-  }
+	"name": "vue-dom-hints",
+	"version": "0.0.0-development",
+	"description": "Vue devtool for DOM hints",
+	"keywords": [
+		"vue",
+		"dom",
+		"hints",
+		"developer-tools"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/privatenumber/vue-dom-hints.git"
+	},
+	"author": "Hiroki Osame <hiroki.osame@gmail.com>",
+	"files": [
+		"dist"
+	],
+	"main": "dist/dom-hints.js",
+	"module": "dist/dom-hints.esm.js",
+	"scripts": {
+		"build": "rollup -c --environment NODE_ENV:production",
+		"dev-build": "rollup -cw",
+		"lint": "eslint --cache .",
+		"test": "jest"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/*.js": [
+			"pnpm lint",
+			"pnpm build",
+			"jest --bail --findRelatedTests"
+		]
+	},
+	"bugs": {
+		"url": "https://github.com/privatenumber/vue-dom-hints/issues"
+	},
+	"homepage": "https://github.com/privatenumber/vue-dom-hints#readme",
+	"devDependencies": {
+		"@babel/core": "^7.12.10",
+		"@babel/preset-env": "^7.12.10",
+		"@pvtnbr/eslint-config": "^0.33.0",
+		"@rollup/plugin-babel": "^5.2.2",
+		"@vue/test-utils": "^1.1.1",
+		"eslint": "^8.34.0",
+		"husky": "^4.3.5",
+		"jest": "^26.6.3",
+		"lint-staged": "^10.5.3",
+		"rollup": "^2.34.2",
+		"rollup-plugin-filesize": "^9.1.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"vue": "^2.6.12",
+		"vue-template-compiler": "^2.6.12"
+	},
+	"eslintConfig": {
+		"extends": "@pvtnbr"
+	}
 }

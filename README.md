@@ -33,14 +33,14 @@ Vue.use(DomHints)
 Disable it for production in your build:
 ```js
 if (process.env.NODE_ENV !== 'production') {
-  Vue.use(DomHints)
+    Vue.use(DomHints)
 }
 ```
 
 Pass in options:
 ```js
 Vue.use(DomHints, {
-  attributeName: 'hint'
+    attributeName: 'hint'
 })
 ```
 

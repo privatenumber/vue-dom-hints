@@ -52,11 +52,12 @@ const DomHints = {
 				}
 
 				const { $el, $options, $parent } = this;
-				let name = $options.__file || $options.name;
-
-				if (!name && !$parent) {
-					name = 'App root';
-				}
+				const name = (
+					$options.__file
+					|| $options.name
+					|| $options._componentTag
+					|| ($parent ? '<anonymous>' : '<App root>')
+				);
 
 				if (name) {
 					const annotate = getAnnotation($el, attributeName);

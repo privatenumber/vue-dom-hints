@@ -17,7 +17,7 @@ describe('attribute annotation', ({ test }) => {
 
 		const App = componentFixture();
 		const wrapper = mount(App, { localVue });
-		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([App.__file, 'App root']));
+		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([App.__file, '<App root>']));
 	});
 
 	test('fallback to name if no __file', () => {
@@ -28,7 +28,7 @@ describe('attribute annotation', ({ test }) => {
 		delete App.__file;
 
 		const wrapper = mount(App, { localVue });
-		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([App.name, 'App root']));
+		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify([App.name, '<App root>']));
 	});
 
 	test('custom annotation attribute', () => {
@@ -40,7 +40,7 @@ describe('attribute annotation', ({ test }) => {
 
 		const App = componentFixture();
 		const wrapper = mount(App, { localVue });
-		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify([App.__file, 'App root']));
+		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify([App.__file, '<App root>']));
 	});
 
 	test('extended component', () => {
@@ -58,7 +58,7 @@ describe('attribute annotation', ({ test }) => {
 		};
 
 		const wrapper = mount(Bar, { localVue });
-		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify(['Bar.vue', 'App root']));
+		expect(wrapper.vm.$el.getAttribute('random-attribute')).toBe(JSON.stringify(['Bar.vue', '<App root>']));
 	});
 });
 
@@ -116,6 +116,6 @@ describe('error cases', ({ test }) => {
 
 		const App = componentFixture();
 		const wrapper = mount(App, { localVue });
-		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify(['App.vue', 'App root']));
+		expect(wrapper.vm.$el.getAttribute('__vue__')).toBe(JSON.stringify(['App.vue', '<App root>']));
 	});
 });

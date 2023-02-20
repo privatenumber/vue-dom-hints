@@ -1,0 +1,22 @@
+{
+  "name": "vue-dom-hints",
+  "version": "0.0.0-semantic-release",
+  "description": "Vue devtool for DOM hints",
+  "keywords": [
+    "vue",
+    "dom",
+    "hints",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "repository": "privatenumber/vue-dom-hints",
+  "author": {
+    "name": "Hiroki Osame",
+    "email": "hiroki.osame@gmail.com"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/dom-hints.js",
+  "module": "./dist/dom-hints.esm.js"
+}

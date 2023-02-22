@@ -141,7 +141,7 @@ The last VM in the array is the top-most component that rendered the element.
 
 ### Find all VMs that match a component name
 
-```
+```js
 ((query) => {
 	const elements = document.querySelectorAll(`[__vue__*="${query}"]`);
 

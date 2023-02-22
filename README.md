@@ -139,6 +139,24 @@ To determine the components that rendered the selected DOM element, you can run 
 
 The last VM in the array is the top-most component that rendered the element.
 
+### Find all VMs that match a component name
+
+```
+((query) => {
+	const elements = document.querySelectorAll(`[__vue__*="${query}"]`);
+
+	return Array.from(elements).flatMap(
+		element => element.__vms__.filter(
+			(vm) => {
+				const name = vm.$options.__file || vm.$options.name || vm.$options._componentTag;
+				return name.match(query);
+			},
+		),
+	);
+})('ComponentName.vue')
+```
+
+
 ## ⚙️ Options
 #### attributeName
 

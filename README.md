@@ -115,7 +115,7 @@ After selecting an component element in the DOM inspector, you can run the follo
             props: vm.$props,
             attrs: vm.$attrs,
             element: vm.$el,
-            usedIn: getName(vm.$vnode.context),
+            usedIn: vm.$vnode ? getName(vm.$vnode.context) : null,
         },
         ...(vm.$parent ? vmPath(vm.$parent) : [])
     ]

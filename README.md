@@ -108,12 +108,14 @@ After selecting an component element in the DOM inspector, you can run the follo
 
 ```js
 (function vmPath(vm) {
+    const getName = (vm) => vm.$options.__file || vm.$options.name || vm.$options._componentTag || (!vm.$parent ? '<App root>' : '<anonymous>');
     return [
         {
-            name: vm.$options.__file || vm.$options.name || vm.$options._componentTag || (!vm.$parent ? '<App root>' : '<anonymous>'),
+            name: getName(vm),
             props: vm.$props,
             attrs: vm.$attrs,
-            element: vm.$el
+            element: vm.$el,
+            usedIn: getName(vm.$vnode.context),
         },
         ...(vm.$parent ? vmPath(vm.$parent) : [])
     ]

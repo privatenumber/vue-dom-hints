@@ -108,14 +108,14 @@ After selecting an component element in the DOM inspector, you can run the follo
 
 ```js
 (function vmPath(vm) {
-    const getName = (vm) => vm.$options.__file || vm.$options.name || vm.$options._componentTag || (!vm.$parent ? '<App root>' : '<anonymous>');
+    const getName = _vm => _vm.$options.__file || _vm.$options.name || _vm.$options._componentTag || (!_vm.$parent ? '<App root>' : '<anonymous>')
     return [
         {
             name: getName(vm),
             props: vm.$props,
             attrs: vm.$attrs,
             element: vm.$el,
-            usedIn: vm.$vnode ? getName(vm.$vnode.context) : null,
+            usedIn: vm.$vnode ? getName(vm.$vnode.context) : null
         },
         ...(vm.$parent ? vmPath(vm.$parent) : [])
     ]
@@ -145,16 +145,16 @@ The last VM in the array is the top-most component that rendered the element.
 
 ```js
 ((query) => {
-	const elements = document.querySelectorAll(`[__vue__*="${query}"]`);
+    const elements = document.querySelectorAll(`[__vue__*="${query}"]`)
 
-	return Array.from(elements).flatMap(
-		element => element.__vms__.filter(
-			(vm) => {
-				const name = vm.$options.__file || vm.$options.name || vm.$options._componentTag;
-				return name.match(query);
-			},
-		),
-	);
+    return Array.from(elements).flatMap(
+        element => element.__vms__.filter(
+            (vm) => {
+                const name = vm.$options.__file || vm.$options.name || vm.$options._componentTag
+                return name.match(query)
+            }
+        )
+    )
 })('ComponentName.vue')
 ```
 
